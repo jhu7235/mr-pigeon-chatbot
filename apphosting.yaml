@@ -6,9 +6,8 @@ runConfig:
   concurrency: 80
   cpu: 1
   memoryMiB: 1024
-
-# Environment variables and secrets.
-# env:
+  # Environment variables and secrets.
+  # env:
   # Configure environment variables.
   # See https://firebase.google.com/docs/app-hosting/configure#user-defined-environment
   # - variable: MESSAGE
@@ -23,10 +22,48 @@ runConfig:
   #   secret: mySecretRef
 
 
-# scripts:
-#   buildCommand: next build --no-lint
-#   runCommand: node dist/index.js
-
-# outputFiles:
-#   serverApp:
-#     include: [dist, server.js]
+env:
+  - variable: AUTH_SECRET
+    secret: AUTH_SECRET
+  - variable: BLOB_READ_WRITE_TOKEN
+    secret: BLOB_READ_WRITE_TOKEN
+  - variable: DATABASE_URL
+    secret: DATABASE_URL
+  - variable: DATABASE_URL_UNPOOLED
+    secret: DATABASE_URL_UNPOOLED
+  - variable: PGHOST
+    secret: PGHOST
+  - variable: PGHOST_UNPOOLED
+    secret: PGHOST_UNPOOLED
+  - variable: PGUSER
+    secret: PGUSER
+  - variable: PGDATABASE
+    secret: PGDATABASE
+  - variable: PGPASSWORD
+    secret: PGPASSWORD
+  - variable: POSTGRES_URL
+    secret: POSTGRES_URL
+  - variable: POSTGRES_URL_NON_POOLING
+    secret: POSTGRES_URL_NON_POOLING
+  - variable: POSTGRES_USER
+    secret: POSTGRES_USER
+  - variable: POSTGRES_HOST
+    secret: POSTGRES_HOST
+  - variable: POSTGRES_PASSWORD
+    secret: POSTGRES_PASSWORD
+  - variable: POSTGRES_DATABASE
+    secret: POSTGRES_DATABASE
+  - variable: POSTGRES_URL_NO_SSL
+    secret: POSTGRES_URL_NO_SSL
+  - variable: POSTGRES_PRISMA_URL
+    secret: POSTGRES_PRISMA_URL
+  - variable: DEEPSEEK_API_KEY
+    secret: DEEPSEEK_API_KEY
+  - variable: GROQ_API_KEY
+    secret: GROQ_API_KEY
+  - variable: OPENAI_API_KEY
+    secret: OPENAI_API_KEY
+  - variable: XAI_API_KEY
+    secret: XAI_API_KEY
+  - variable: AUTH_TRUST_HOST
+    secret: AUTH_TRUST_HOST
