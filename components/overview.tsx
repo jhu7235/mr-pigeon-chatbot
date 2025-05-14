@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { SquareArrowOutUpRight } from 'lucide-react';
 import Link from 'next/link';
 
 export const Overview = () => {
@@ -21,8 +22,8 @@ export const Overview = () => {
       </p>
       <span>For more details about the underlying technologies, check out the {" "}
         <Link href="https://github.com/jhu7235/mr-pigeon-chatbot" 
-        className="font-medium underline underline-offset-4">
-          GitHub repo
+        target="_blank">
+          <span className="font-medium underline underline-offset-4">GitHub repo</span> <SquareArrowOutUpRight size={20} className="inline ml-1 align-text-bottom" />
         </Link>
       </span>
     </div>
