@@ -67,6 +67,14 @@ This is a side project to explore high level AI development. This is a clone of 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+### Start
+
+pnpm dev
+
+### Deploy
+
+pnpm firebase:deploy
+
 <!-- ROADMAP -->
 
 ## Roadmap
