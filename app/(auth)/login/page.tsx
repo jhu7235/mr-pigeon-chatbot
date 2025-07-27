@@ -52,7 +52,7 @@ export default function Page() {
     <div className="flex h-dvh w-screen items-center pt-12 md:pt-0 md:items-center justify-center bg-background">
       <div className="w-full max-w-md overflow-hidden rounded-2xl flex flex-col gap-12">
         <Image
-          src="/mr-pigeon-logo.png"
+          src="/mr-pigeon-logo-512.png"
           alt="Mr. Pigeon Logo"
           className="mx-auto"
           width={256}
