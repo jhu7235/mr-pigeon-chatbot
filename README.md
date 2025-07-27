@@ -6,13 +6,11 @@
 [![Issues][issues-shield]][issues-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/jhu7235/mr-pigeon-chatbot">
-    <img src="./app/(chat)/mr-pigeon-logo.png" alt="Logo" width="240" height="240">
+    <img src="./public/mr-pigeon-logo.png" alt="Logo" width="240" height="240">
   </a>
 
 <h3 align="center">Mr Pigeon Chatbot</h3>
@@ -26,8 +24,6 @@
     <a href="https://chat.mr-pigeon.com" target="_blank">View App (chat.mr-pigeon.com)</a>
   </p>
 </div>
-
-
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -43,42 +39,41 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
-## About The Project
-This is a side project to explore high level AI development. This is a clone of chatGPT and other chatbots.
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## About The Project
+
+This is a side project to explore high level AI development. This is a clone of chatGPT and other chatbots.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- BUILT WITH -->
+
 ### Built With
 
-* [![Next.js][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Firebase][Firebase.com]][Firebase-url]
-* [![Radix UI][RadixUI.com]][RadixUI-url]
-* [![Tailwind CSS][TailwindCSS.com]][TailwindCSS-url]
-* [![Lucide Icons][Lucide.com]][Lucide-url]
-* [![SWR][SWR.com]][SWR-url]
-* [![Zod][Zod.com]][Zod-url]
-* [![OpenAI][OpenAI.com]][OpenAI-url]
-* [![Deepseek][Deepseek.com]][Deepseek-url]
-* [![Vercel AI SDK][VercelAI.com]][VercelAI-url]
-* [![Drizzle ORM][Drizzle.com]][Drizzle-url]
-* [![NextAuth][NextAuth.com]][NextAuth-url]
+- [![Next.js][Next.js]][Next-url]
+- [![React][React.js]][React-url]
+- [![Firebase][Firebase.com]][Firebase-url]
+- [![Radix UI][RadixUI.com]][RadixUI-url]
+- [![Tailwind CSS][TailwindCSS.com]][TailwindCSS-url]
+- [![Lucide Icons][Lucide.com]][Lucide-url]
+- [![SWR][SWR.com]][SWR-url]
+- [![Zod][Zod.com]][Zod-url]
+- [![OpenAI][OpenAI.com]][OpenAI-url]
+- [![Deepseek][Deepseek.com]][Deepseek-url]
+- [![Vercel AI SDK][VercelAI.com]][VercelAI-url]
+- [![Drizzle ORM][Drizzle.com]][Drizzle-url]
+- [![NextAuth][NextAuth.com]][NextAuth-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
 <!-- ROADMAP -->
+
 ## Roadmap
 
 N/A
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 ### Top contributors:
 
@@ -86,20 +81,13 @@ N/A
   <img src="https://contrib.rocks/image?repo=jhu7235/mr-pigeon-chatbot" alt="contrib.rocks image" />
 </a>
 
-
-
-
-
 Project Link: [https://github.com/jhu7235/mr-pigeon-chatbot](https://github.com/jhu7235/mr-pigeon-chatbot)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-
-
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [contributors-shield]: https://img.shields.io/github/contributors/jhu7235/mr-pigeon-chatbot.svg?style=for-the-badge
 [contributors-url]: https://github.com/jhu7235/mr-pigeon-chatbot/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/jhu7235/mr-pigeon-chatbot.svg?style=for-the-badge

@@ -24,7 +24,6 @@ export default function Page() {
   );
 
   useEffect(() => {
-    console.log('state', {state})
     if (state.status === 'user_exists') {
       toast({ type: 'error', description: 'Account already exists!' });
     } else if (state.status === 'failed') {
@@ -48,8 +47,13 @@ export default function Page() {
   };
 
   return (
-    <div className="flex h-dvh w-screen items-start pt-12 md:pt-0 md:items-center justify-center bg-background">
+    <div className="flex h-dvh w-screen items-center pt-12 md:pt-0 md:items-center justify-center bg-background">
       <div className="w-full max-w-md overflow-hidden rounded-2xl gap-12 flex flex-col">
+        <img
+          src="/mr-pigeon-logo.png"
+          alt="Mr. Pigeon Logo"
+          className="w-64 h-64 mx-auto"
+        />
         <div className="flex flex-col items-center justify-center gap-2 px-4 text-center sm:px-16">
           <h3 className="text-xl font-semibold dark:text-zinc-50">Sign Up</h3>
           <p className="text-sm text-gray-500 dark:text-zinc-400">
