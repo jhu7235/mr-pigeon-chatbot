@@ -5,8 +5,8 @@ import {
   smoothStream,
   streamText,
 } from 'ai';
-import { auth } from '@/app/(auth)/auth';
-import { systemPrompt } from '@/lib/ai/prompts';
+import {auth} from '@/app/(auth)/auth';
+import {systemPrompt} from '@/lib/ai/prompts';
 import {
   deleteChatById,
   getChatById,
@@ -18,13 +18,13 @@ import {
   getMostRecentUserMessage,
   getTrailingMessageId,
 } from '@/lib/utils';
-import { generateTitleFromUserMessage } from '@/app/(chat)/actions';
-import { createDocument } from '@/lib/ai/tools/create-document';
-import { updateDocument } from '@/lib/ai/tools/update-document';
-import { requestSuggestions } from '@/lib/ai/tools/request-suggestions';
-import { getWeather } from '@/lib/ai/tools/get-weather';
-import { isProductionEnvironment } from '@/lib/constants';
-import { myProvider } from '@/lib/ai/providers';
+import {generateTitleFromUserMessage} from '@/app/(chat)/actions';
+import {createDocument} from '@/lib/ai/tools/create-document';
+import {updateDocument} from '@/lib/ai/tools/update-document';
+import {requestSuggestions} from '@/lib/ai/tools/request-suggestions';
+import {getWeather} from '@/lib/ai/tools/get-weather';
+import {isProductionEnvironment} from '@/lib/constants';
+import {myProvider} from '@/lib/ai/providers';
 
 export const maxDuration = 60;
 
@@ -40,31 +40,31 @@ export async function POST(request: Request) {
       selectedChatModel: string;
     } = await request.json();
 
-    console.log({ selectedChatModel, messages });
+    console.log({selectedChatModel, messages});
 
     const session = await auth();
 
     if (!session || !session.user || !session.user.id) {
-      return new Response('Unauthorized', { status: 401 });
+      return new Response('Unauthorized', {status: 401});
     }
 
     const userMessage = getMostRecentUserMessage(messages);
 
     if (!userMessage) {
-      return new Response('No user message found', { status: 400 });
+      return new Response('No user message found', {status: 400});
     }
 
-    const chat = await getChatById({ id });
+    const chat = await getChatById({id});
 
     if (!chat) {
       const title = await generateTitleFromUserMessage({
         message: userMessage,
       });
 
-      await saveChat({ id, userId: session.user.id, title });
+      await saveChat({id, userId: session.user.id, title});
     } else {
       if (chat.userId !== session.user.id) {
-        return new Response('Unauthorized', { status: 401 });
+        return new Response('Unauthorized', {status: 401});
       }
     }
 
@@ -83,34 +83,34 @@ export async function POST(request: Request) {
 
     return createDataStreamResponse({
       execute: (dataStream) => {
-        console.log({ selectedChatModel });
+        console.log({selectedChatModel});
 
         const result = streamText({
           model: myProvider.languageModel(selectedChatModel),
-          system: systemPrompt({ selectedChatModel }),
+          system: systemPrompt({selectedChatModel}),
           messages,
           maxSteps: 5,
           experimental_activeTools:
             selectedChatModel === 'chat-model-reasoning'
               ? []
               : [
-                  'getWeather',
-                  'createDocument',
-                  'updateDocument',
-                  'requestSuggestions',
-                ],
-          experimental_transform: smoothStream({ chunking: 'word' }),
+                'getWeather',
+                'createDocument',
+                'updateDocument',
+                'requestSuggestions',
+              ],
+          experimental_transform: smoothStream({chunking: 'word'}),
           experimental_generateMessageId: generateUUID,
           tools: {
             getWeather,
-            createDocument: createDocument({ session, dataStream }),
-            updateDocument: updateDocument({ session, dataStream }),
+            createDocument: createDocument({session, dataStream}),
+            updateDocument: updateDocument({session, dataStream}),
             requestSuggestions: requestSuggestions({
               session,
               dataStream,
             }),
           },
-          onFinish: async ({ response }) => {
+          onFinish: async ({response}) => {
             if (session.user?.id) {
               try {
                 const assistantId = getTrailingMessageId({
@@ -164,38 +164,38 @@ export async function POST(request: Request) {
       },
     });
   } catch (error) {
-    console.log(error);
+    console.error('Error in POST /api/chat:', error);
 
     return new Response('An error occurred while processing your request!', {
-      status: 404,
+      status: 500,
     });
   }
 }
 
 export async function DELETE(request: Request) {
-  const { searchParams } = new URL(request.url);
+  const {searchParams} = new URL(request.url);
   const id = searchParams.get('id');
 
   if (!id) {
-    return new Response('Not Found', { status: 404 });
+    return new Response('Not Found', {status: 404});
   }
 
   const session = await auth();
 
   if (!session || !session.user) {
-    return new Response('Unauthorized', { status: 401 });
+    return new Response('Unauthorized', {status: 401});
   }
 
   try {
-    const chat = await getChatById({ id });
+    const chat = await getChatById({id});
 
     if (chat.userId !== session.user.id) {
-      return new Response('Unauthorized', { status: 401 });
+      return new Response('Unauthorized', {status: 401});
     }
 
-    await deleteChatById({ id });
+    await deleteChatById({id});
 
-    return new Response('Chat deleted', { status: 200 });
+    return new Response('Chat deleted', {status: 200});
   } catch (error) {
     return new Response('An error occurred while processing your request!', {
       status: 500,
