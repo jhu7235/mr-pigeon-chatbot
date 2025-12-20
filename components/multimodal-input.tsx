@@ -21,8 +21,9 @@ import { PreviewAttachment } from './preview-attachment';
 import { Button } from './ui/button';
 import { Textarea } from './ui/textarea';
 import { SuggestedActions } from './suggested-actions';
+import { RoleSelector } from './role-selector';
 import equal from 'fast-deep-equal';
-import { UseChatHelpers } from '@ai-sdk/react';
+import type { UseChatHelpers } from '@ai-sdk/react';
 
 function PureMultimodalInput({
   chatId,
@@ -103,12 +104,28 @@ function PureMultimodalInput({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [uploadQueue, setUploadQueue] = useState<Array<string>>([]);
 
+  // Role selector state
+  const [role, setRole] = useState<string>('Learning Assistant');
+
   const submitForm = useCallback(() => {
     window.history.replaceState({}, '', `/chat/${chatId}`);
 
     handleSubmit(undefined, {
       experimental_attachments: attachments,
     });
+
+    if (messages.length === 0) {
+      // First message: send both role-setting and user message
+      const uniqueId = () =>
+        `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+      setMessages([
+        {
+          id: uniqueId(),
+          role: 'system',
+          content: `You are a staff level ${role}. After every user message, always ask for clarification and all relevant materials before responding or taking action on any request. ${input}`,
+        },
+      ]);
+    }
 
     setAttachments([]);
     setLocalStorageInput('');
@@ -181,11 +198,20 @@ function PureMultimodalInput({
 
   return (
     <div className="relative w-full flex flex-col gap-4">
-      {messages.length === 0 &&
+      {/* {messages.length === 0 &&
         attachments.length === 0 &&
         uploadQueue.length === 0 && (
           <SuggestedActions append={append} chatId={chatId} />
-        )}
+        )} */}
+
+      {/* Show RoleSelector only before first message is sent */}
+      {messages.length === 0 && (
+        <div className="flex flex-row items-end gap-2 mb-2">
+          <div className="flex-1">
+            <RoleSelector role={role} setRole={setRole} />
+          </div>
+        </div>
+      )}
 
       <input
         type="file"

@@ -18,7 +18,7 @@ import {
   getMostRecentUserMessage,
   getTrailingMessageId,
 } from '@/lib/utils';
-import { generateTitleFromUserMessage } from '../../actions';
+import { generateTitleFromUserMessage } from '@/app/(chat)/actions';
 import { createDocument } from '@/lib/ai/tools/create-document';
 import { updateDocument } from '@/lib/ai/tools/update-document';
 import { requestSuggestions } from '@/lib/ai/tools/request-suggestions';
@@ -39,6 +39,8 @@ export async function POST(request: Request) {
       messages: Array<UIMessage>;
       selectedChatModel: string;
     } = await request.json();
+
+    console.log({ selectedChatModel, messages });
 
     const session = await auth();
 
@@ -81,8 +83,8 @@ export async function POST(request: Request) {
 
     return createDataStreamResponse({
       execute: (dataStream) => {
-        console.log({selectedChatModel});
-        
+        console.log({ selectedChatModel });
+
         const result = streamText({
           model: myProvider.languageModel(selectedChatModel),
           system: systemPrompt({ selectedChatModel }),
@@ -163,7 +165,7 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.log(error);
-    
+
     return new Response('An error occurred while processing your request!', {
       status: 404,
     });
@@ -200,3 +202,4 @@ export async function DELETE(request: Request) {
     });
   }
 }
+

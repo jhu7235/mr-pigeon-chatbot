@@ -12,3 +12,4 @@ export async function GET() {
   const chats = await getChatsByUserId({ id: session.user.id! });
   return Response.json(chats);
 }
+
